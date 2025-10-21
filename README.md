@@ -4,14 +4,14 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
 
 ## Features
 
-- **Natural Language to SQL**: Convert natural language questions into SQL queries using AWS Bedrock Claude 3.5 Sonnet
-- **MCP Protocol Support**: Full Model Context Protocol implementation for AI tool integration
-- **FastAPI REST API**: Traditional REST API endpoints for direct integration
-- **Security**: Read-only SQL execution with input validation and SQL injection protection
-- **Schema Awareness**: Automatic database schema detection for better SQL generation
-- **Error Handling**: Comprehensive error handling and logging
-- **Shared Architecture**: Clean, maintainable code with shared utilities
-- **Production Ready**: Fully tested and optimized for production deployment
+- **🤖 Natural Language to SQL**: Convert natural language questions into SQL queries using AWS Bedrock Claude 3.5 Sonnet
+- **🔌 MCP Protocol Support**: Full Model Context Protocol implementation for AI tool integration
+- **🌐 FastAPI REST API**: Traditional REST API endpoints for direct integration
+- **🛡️ Security**: Read-only SQL execution with input validation and SQL injection protection
+- **📊 Schema Awareness**: Automatic database schema detection for better SQL generation
+- **⚡ Terminal Interface**: Interactive and command-line interfaces for direct terminal usage
+- **🏗️ Shared Architecture**: Clean, maintainable code with shared utilities
+- **🚀 Production Ready**: Fully tested and optimized for production deployment
 
 ## Architecture
 
@@ -48,12 +48,20 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
                     └───────────────────────────┘
 ```
 
-## Installation
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.8+
+- MySQL database (local or AWS RDS)
+- AWS account with Bedrock access
+- Git
+
+### Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
-   cd mcp-mysql
+   git clone https://github.com/YOUR_USERNAME/mysql-nlp-mcp-server.git
+   cd mysql-nlp-mcp-server
    ```
 
 2. **Install dependencies**:
@@ -62,12 +70,11 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
    ```
 
 3. **Configure environment variables**:
-   Copy `.env.example` to `.env` and update with your configuration:
    ```bash
    cp .env.example .env
    ```
-
-   Edit `.env` file:
+   
+   Edit `.env` file with your credentials:
    ```env
    # Database Configuration
    DB_HOST=your-rds-endpoint.amazonaws.com
@@ -82,108 +89,82 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
    ```
 
 4. **Configure AWS Credentials**:
-   Ensure your AWS credentials are configured for Bedrock access:
    ```bash
    aws configure
-   ```
-   Or set environment variables:
-   ```bash
+   # OR set environment variables:
    export AWS_ACCESS_KEY_ID=your_access_key
    export AWS_SECRET_ACCESS_KEY=your_secret_key
    ```
 
-## Usage
+5. **Test the setup**:
+   ```bash
+   python test_mcp_server.py
+   ```
 
-### Option 1: MCP Server (Recommended for AI Integration)
+## 📖 Usage
 
-Run the MCP server for integration with AI tools that support MCP:
+### 🎯 Option 1: Terminal Interface (Recommended for Direct Use)
+
+#### Interactive Terminal Client
+```bash
+python terminal_mcp_client.py
+```
+
+**Commands:**
+- `ask <question>` - Ask natural language questions
+- `sql <query>` - Execute raw SQL queries  
+- `schema` - Get database schema
+- `generate <question>` - Generate SQL without executing
+- `help` - Show all commands
+
+#### Command Line Interface
+```bash
+# Quick commands
+python mcp_cli.py ask "Show me all courses"
+python mcp_cli.py sql "SELECT * FROM Courses LIMIT 5"
+python mcp_cli.py schema
+python mcp_cli.py generate "Find students from California"
+```
+
+### 🔌 Option 2: MCP Server (For AI Integration)
 
 ```bash
 python start_mcp_server.py
 ```
 
-The MCP server provides these tools:
-- `query_database`: Execute natural language queries
-- `execute_sql`: Execute raw SQL SELECT queries
-- `get_schema`: Get database schema information
-- `generate_sql`: Generate SQL from natural language without execution
+**MCP Tools Available:**
+- `query_database` - Execute natural language queries
+- `execute_sql` - Execute raw SQL SELECT queries
+- `get_schema` - Get database schema information
+- `generate_sql` - Generate SQL from natural language without execution
 
-### Option 1a: Terminal MCP Client (Interactive)
-
-For interactive terminal usage:
-
-```bash
-python terminal_mcp_client.py
-```
-
-This provides an interactive terminal interface with commands:
-- `ask <question>` - Ask natural language questions
-- `sql <query>` - Execute raw SQL queries
-- `schema` - Get database schema
-- `generate <question>` - Generate SQL without executing
-- `help` - Show all commands
-
-### Option 1b: Command Line Interface (Quick Commands)
-
-For quick command-line usage:
-
-```bash
-# List available tools
-python mcp_cli.py list
-
-# Get database schema
-python mcp_cli.py schema
-
-# Execute SQL query
-python mcp_cli.py sql "SELECT * FROM Courses LIMIT 5"
-
-# Ask natural language question
-python mcp_cli.py ask "Show me all courses"
-
-# Generate SQL without executing
-python mcp_cli.py generate "Find students from California"
-```
-
-### Option 2: FastAPI Server (Traditional REST API)
-
-Run the FastAPI server for traditional REST API access:
+### 🌐 Option 3: FastAPI Server (REST API)
 
 ```bash
 python start_fastapi_server.py
 ```
 
-Access the API documentation at: `http://localhost:8000/docs`
+**Access:** `http://localhost:8000/docs`
 
-#### API Endpoints
+**API Endpoints:**
+- `GET /` - API information
+- `GET /test-db` - Test database connection
+- `GET /schema` - Get database schema
+- `POST /query` - Process natural language query
+- `POST /sql` - Execute raw SQL query
+- `POST /generate-sql` - Generate SQL from natural language
 
-- `GET /`: API information and available endpoints
-- `GET /test-db`: Test database connection
-- `GET /schema`: Get database schema
-- `POST /query`: Process natural language query
-- `POST /sql`: Execute raw SQL query
-- `POST /generate-sql`: Generate SQL from natural language
-
-#### Example Usage
-
-**Natural Language Query**:
+**Example Usage:**
 ```bash
+# Natural language query
 curl -X POST "http://localhost:8000/query" \
   -H "Content-Type: application/json" \
   -d '{"query": "Show me all users from California"}'
-```
 
-**Raw SQL Query**:
-```bash
+# Raw SQL query
 curl -X POST "http://localhost:8000/sql" \
   -H "Content-Type: application/json" \
   -d '{"sql": "SELECT * FROM users WHERE state = \"CA\""}'
-```
-
-**Generate SQL Only**:
-```bash
-curl -X POST "http://localhost:8000/generate-sql" \
-  -H "Content-Type: application/json" \
-  -d '{"question": "Find all orders from last month"}'
 ```
 
 ## Configuration
@@ -222,12 +203,10 @@ curl -X POST "http://localhost:8000/generate-sql" \
 - **Schema validation**: Automatic schema detection and validation
 - **Error handling**: Comprehensive error handling without exposing sensitive information
 
-## Development
-
-### Project Structure
+## 📁 Project Structure
 
 ```
-mcp-mysql/
+mysql-nlp-mcp-server/
 ├── app/
 │   ├── main.py          # FastAPI server implementation
 │   ├── config.py        # Configuration management
@@ -243,6 +222,8 @@ mcp-mysql/
 ├── .env.example       # Environment variables template
 └── README.md          # This file
 ```
+
+## 🛠️ Development
 
 ### Adding New Features
 
@@ -265,14 +246,49 @@ curl -X POST "http://localhost:8000/query" \
   -d '{"query": "Show me the first 5 records from any table"}'
 ```
 
-## Recent Improvements
+## 🧪 Testing
+
+### Test Your Setup
+```bash
+# Test MCP server functionality
+python test_mcp_server.py
+
+# Test database connection
+python test_rds_connection.py
+
+# Test simple SQL query
+python test_simple.py
+```
+
+### Example Queries
+
+**Natural Language:**
+```bash
+# Interactive mode
+python terminal_mcp_client.py
+MCP> ask Show me all courses with more than 50 students
+
+# Command line
+python mcp_cli.py ask "Find all students from California"
+```
+
+**SQL Queries:**
+```bash
+# Interactive mode
+MCP> sql SELECT * FROM Courses LIMIT 10
+
+# Command line  
+python mcp_cli.py sql "SELECT COUNT(*) FROM Students"
+```
+
+## 🎯 Recent Improvements
 
 ### ✅ **Version 2.0 Updates**
 
 - **🔧 Fixed AWS Bedrock Integration**: Updated to correct Claude 3.5 Sonnet API format
 - **🏗️ Shared Architecture**: Eliminated code duplication with centralized utilities
 - **🛡️ Enhanced Security**: Improved SQL injection protection and input validation
-- **⚡ Performance**: Optimized database connections and error handling
+- **⚡ Terminal Interface**: Added interactive and command-line interfaces
 - **🧹 Code Cleanup**: Removed redundant files and improved maintainability
 - **📚 Better Documentation**: Updated architecture diagrams and usage examples
 
@@ -312,21 +328,48 @@ curl -X POST "http://localhost:8000/query" \
 
 Both servers provide detailed logging. Check the console output for error messages and debugging information.
 
-## Contributing
+## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+We welcome contributions! Here's how to get started:
 
-## License
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes** and test them
+4. **Commit your changes**: `git commit -m 'Add amazing feature'`
+5. **Push to the branch**: `git push origin feature/amazing-feature`
+6. **Open a Pull Request**
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Development Setup
+```bash
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/mysql-nlp-mcp-server.git
+cd mysql-nlp-mcp-server
 
-## Support
+# Install dependencies
+pip install -r requirements.txt
 
-For issues and questions:
-1. Check the troubleshooting section
-2. Review the API documentation at `/docs`
-3. Create an issue in the repository
+# Run tests
+python test_mcp_server.py
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+**Need help?**
+1. 📖 Check the troubleshooting section above
+2. 🔍 Review the API documentation at `/docs`
+3. 🐛 Create an issue in the repository
+4. 💬 Start a discussion for questions
+
+**Found a bug?**
+- Please create an issue with:
+  - Steps to reproduce
+  - Expected vs actual behavior
+  - Environment details (OS, Python version, etc.)
+
+## ⭐ Star This Repository
+
+If this project helped you, please give it a star! ⭐
