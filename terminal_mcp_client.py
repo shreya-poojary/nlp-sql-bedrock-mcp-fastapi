@@ -74,6 +74,14 @@ class TerminalMCPClient:
                     
                 elif user_input.lower() == 'tools':
                     await self.list_tools()
+                    print("\n" + "="*60)
+                    print("TERMINAL COMMANDS (Use these instead!)")
+                    print("="*60)
+                    print("ask <question>     - Natural language to SQL + execute")
+                    print("sql <query>       - Direct SQL execution")
+                    print("generate <question> - Natural language to SQL only")
+                    print("schema            - Get database schema")
+                    print("="*60)
                     continue
                     
                 elif user_input.lower() == 'schema':
@@ -180,6 +188,10 @@ class TerminalMCPClient:
         print("ask <question> - Ask a natural language question")
         print("generate <question> - Generate SQL without executing")
         print("quit/exit/q   - Exit the client")
+        print()
+        print("IMPORTANT: Use these commands, NOT the MCP tool names!")
+        print("[CORRECT] Use: ask, sql, generate, schema")
+        print("[WRONG] Don't use: query_database, execute_sql, generate_sql")
         print()
         print("Examples:")
         print("  sql SELECT * FROM Courses LIMIT 5")
