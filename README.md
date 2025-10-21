@@ -4,7 +4,7 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
 
 ## Features
 
-- **Natural Language to SQL**: Convert natural language questions into SQL queries using AWS Bedrock Claude 3.5 Sonnet
+- **Natural Language to SQL**: Convert natural language questions into SQL queries using AWS Bedrock Converse API with Amazon Nova Pro or Claude 3.5 Sonnet
 - **MCP Protocol Support**: Full Model Context Protocol implementation for AI tool integration
 - **FastAPI REST API**: Traditional REST API endpoints for direct integration
 - **Terminal Interface**: Interactive and command-line interfaces for direct terminal usage
@@ -39,8 +39,8 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
                     └─────────────┬─────────────┘
                                   │
                     ┌─────────────▼─────────────┐
-                    │      AWS Bedrock          │
-                    │   (Claude 3.5 Sonnet)     │
+                    │   AWS Bedrock Converse    │
+                    │ (Nova Pro / Claude 3.5)   │
                     └─────────────┬─────────────┘
                                   │
                     ┌─────────────▼─────────────┐

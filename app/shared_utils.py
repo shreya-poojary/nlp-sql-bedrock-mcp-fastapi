@@ -130,34 +130,28 @@ Instructions:
 
 SQL Query:"""
 
-        # Prepare request body for Claude model (correct format)
-        body = json.dumps({
-            "anthropic_version": "bedrock-2023-05-31",
-            "max_tokens": 1000,
-            "messages": [
+        # Use Converse API for Claude models
+        response = bedrock_client.converse(
+            modelId=BEDROCK_MODEL_ID,
+            messages=[
                 {
                     "role": "user",
-                    "content": prompt
+                    "content": [{"text": prompt}]
                 }
-            ]
-        })
-
-        response = bedrock_client.invoke_model(
-            modelId=BEDROCK_MODEL_ID,
-            body=body,
-            contentType="application/json"
+            ],
+            inferenceConfig={
+                "maxTokens": 1000,
+                "temperature": 0.1
+            }
         )
 
-        response_body = json.loads(response["body"].read())
-        
-        # Extract SQL from Claude's response (correct format for Claude 3.5 Sonnet)
+        # Extract SQL from Converse API response
         sql_query = ""
         
-        if "content" in response_body and len(response_body["content"]) > 0:
-            sql_query = response_body["content"][0].get("text", "").strip()
-        elif "text" in response_body:
-            # Fallback for different response format
-            sql_query = response_body["text"].strip()
+        if "output" in response and "message" in response["output"]:
+            content = response["output"]["message"].get("content", [])
+            if content and len(content) > 0:
+                sql_query = content[0].get("text", "").strip()
         
         # Check if we got a valid SQL query
         if not sql_query:

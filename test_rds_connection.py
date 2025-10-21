@@ -78,11 +78,19 @@ def test_aws_bedrock():
             region_name=os.getenv("AWS_REGION", "us-east-1")
         )
         
-        # Test with a simple request
-        response = client.invoke_model(
-            modelId=os.getenv("BEDROCK_MODEL_ID", "anthropic.claude-3-5-sonnet-20240620-v1:0"),
-            body='{"messages": [{"role": "user", "content": [{"text": "Hello"}]}]}',
-            contentType="application/json"
+        # Test with a simple request using Converse API
+        response = client.converse(
+            modelId=os.getenv("BEDROCK_MODEL_ID", "amazon.nova-pro-v1:0"),
+            messages=[
+                {
+                    "role": "user",
+                    "content": [{"text": "Hello"}]
+                }
+            ],
+            inferenceConfig={
+                "maxTokens": 10,
+                "temperature": 0.1
+            }
         )
         
         print("[SUCCESS] AWS Bedrock connection successful!")
