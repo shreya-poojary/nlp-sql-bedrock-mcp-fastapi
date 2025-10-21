@@ -231,7 +231,6 @@ mcp-mysql/
 ├── app/
 │   ├── main.py          # FastAPI server implementation
 │   ├── config.py        # Configuration management
-│   ├── db.py           # Database utilities (legacy)
 │   └── shared_utils.py  # Shared utilities (database + Bedrock)
 ├── mcp_server.py       # MCP server implementation
 ├── start_mcp_server.py # MCP server startup script
@@ -239,6 +238,7 @@ mcp-mysql/
 ├── terminal_mcp_client.py # Interactive terminal MCP client
 ├── mcp_cli.py          # Command-line MCP interface
 ├── test_mcp_server.py  # MCP server testing script
+├── test_rds_connection.py # Database connection testing
 ├── requirements.txt    # Python dependencies
 ├── .env.example       # Environment variables template
 └── README.md          # This file
