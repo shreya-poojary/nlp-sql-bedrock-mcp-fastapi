@@ -4,14 +4,14 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
 
 ## Features
 
-- **🤖 Natural Language to SQL**: Convert natural language questions into SQL queries using AWS Bedrock Claude 3.5 Sonnet
-- **🔌 MCP Protocol Support**: Full Model Context Protocol implementation for AI tool integration
-- **🌐 FastAPI REST API**: Traditional REST API endpoints for direct integration
-- **🛡️ Security**: Read-only SQL execution with input validation and SQL injection protection
-- **📊 Schema Awareness**: Automatic database schema detection for better SQL generation
-- **⚡ Terminal Interface**: Interactive and command-line interfaces for direct terminal usage
-- **🏗️ Shared Architecture**: Clean, maintainable code with shared utilities
-- **🚀 Production Ready**: Fully tested and optimized for production deployment
+- **Natural Language to SQL**: Convert natural language questions into SQL queries using AWS Bedrock Claude 3.5 Sonnet
+- **MCP Protocol Support**: Full Model Context Protocol implementation for AI tool integration
+- **FastAPI REST API**: Traditional REST API endpoints for direct integration
+- **Terminal Interface**: Interactive and command-line interfaces for direct terminal usage
+- **Security**: Read-only SQL execution with input validation and SQL injection protection
+- **Schema Awareness**: Automatic database schema detection for better SQL generation
+- **Shared Architecture**: Clean, maintainable code with shared utilities
+- **Production Ready**: Fully tested and optimized for production deployment
 
 ## Architecture
 
@@ -48,7 +48,7 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
                     └───────────────────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8+
@@ -101,9 +101,9 @@ A comprehensive Natural Language Processing server for MySQL databases using AWS
    python test_mcp_server.py
    ```
 
-## 📖 Usage
+## Usage
 
-### 🎯 Option 1: Terminal Interface (Recommended for Direct Use)
+### Option 1: Terminal Interface (Recommended for Direct Use)
 
 #### Interactive Terminal Client
 ```bash
@@ -126,7 +126,7 @@ python mcp_cli.py schema
 python mcp_cli.py generate "Find students from California"
 ```
 
-### 🔌 Option 2: MCP Server (For AI Integration)
+### Option 2: MCP Server (For AI Integration)
 
 ```bash
 python start_mcp_server.py
@@ -138,7 +138,7 @@ python start_mcp_server.py
 - `get_schema` - Get database schema information
 - `generate_sql` - Generate SQL from natural language without execution
 
-### 🌐 Option 3: FastAPI Server (REST API)
+### Option 3: FastAPI Server (REST API)
 
 ```bash
 python start_fastapi_server.py
@@ -203,7 +203,7 @@ curl -X POST "http://localhost:8000/sql" \
 - **Schema validation**: Automatic schema detection and validation
 - **Error handling**: Comprehensive error handling without exposing sensitive information
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 mysql-nlp-mcp-server/
@@ -223,7 +223,7 @@ mysql-nlp-mcp-server/
 └── README.md          # This file
 ```
 
-## 🛠️ Development
+## Development
 
 ### Adding New Features
 
@@ -246,7 +246,7 @@ curl -X POST "http://localhost:8000/query" \
   -d '{"query": "Show me the first 5 records from any table"}'
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Test Your Setup
 ```bash
@@ -281,23 +281,6 @@ MCP> sql SELECT * FROM Courses LIMIT 10
 python mcp_cli.py sql "SELECT COUNT(*) FROM Students"
 ```
 
-## 🎯 Recent Improvements
-
-### ✅ **Version 2.0 Updates**
-
-- **🔧 Fixed AWS Bedrock Integration**: Updated to correct Claude 3.5 Sonnet API format
-- **🏗️ Shared Architecture**: Eliminated code duplication with centralized utilities
-- **🛡️ Enhanced Security**: Improved SQL injection protection and input validation
-- **⚡ Terminal Interface**: Added interactive and command-line interfaces
-- **🧹 Code Cleanup**: Removed redundant files and improved maintainability
-- **📚 Better Documentation**: Updated architecture diagrams and usage examples
-
-### **Key Changes:**
-- ✅ **Unified Codebase**: Both MCP and FastAPI servers use shared utilities
-- ✅ **Fixed Bedrock Requests**: Correct API format for Claude 3.5 Sonnet
-- ✅ **Enhanced Error Handling**: Better error messages and debugging
-- ✅ **Cleaner Architecture**: Removed duplicate code and files
-- ✅ **Production Ready**: Fully tested and optimized
 
 ## Troubleshooting
 
@@ -328,7 +311,7 @@ python mcp_cli.py sql "SELECT COUNT(*) FROM Students"
 
 Both servers provide detailed logging. Check the console output for error messages and debugging information.
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how to get started:
 
@@ -352,11 +335,11 @@ pip install -r requirements.txt
 python test_mcp_server.py
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## Support
 
 **Need help?**
 1. 📖 Check the troubleshooting section above
@@ -370,6 +353,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   - Expected vs actual behavior
   - Environment details (OS, Python version, etc.)
 
-## ⭐ Star This Repository
+## Star This Repository
 
-If this project helped you, please give it a star! ⭐
+If this project helped you, please give it a star!
