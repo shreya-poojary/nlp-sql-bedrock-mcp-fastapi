@@ -138,6 +138,96 @@ python start_mcp_server.py
 - `get_schema` - Get database schema information
 - `generate_sql` - Generate SQL from natural language without execution
 
+#### Integrating with Claude Desktop
+
+To use your MCP server with Claude Desktop, follow these steps:
+
+**Step 1: Install Claude Desktop**
+
+Download and install from: https://claude.ai/download
+
+**Step 2: Locate Configuration File**
+
+Find your Claude Desktop config file:
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Linux**: `~/.config/Claude/claude_desktop_config.json`
+
+**Step 3: Add MCP Server Configuration**
+
+Edit `claude_desktop_config.json` and add your server:
+
+```json
+{
+  "mcpServers": {
+    "mysql-nlp": {
+      "command": "python",
+      "args": [
+        "C:/Users/YOUR_USERNAME/path/to/mcp-mysql/mcp_server.py"
+      ],
+      "env": {
+        "DB_HOST": "your-database-host",
+        "DB_PORT": "3306",
+        "DB_NAME": "your-database-name",
+        "DB_USER": "your-username",
+        "DB_PASSWORD": "your-password",
+        "AWS_REGION": "us-east-1",
+        "BEDROCK_MODEL_ID": "amazon.nova-pro-v1:0"
+      }
+    }
+  }
+}
+```
+
+**Important Notes:**
+- Use **absolute path** to your `mcp_server.py` file
+- Use forward slashes (`/`) even on Windows
+- Replace placeholder values with your actual credentials
+- Alternatively, use `"cwd"` parameter to load from `.env` file:
+
+```json
+{
+  "mcpServers": {
+    "mysql-nlp": {
+      "command": "python",
+      "args": ["mcp_server.py"],
+      "cwd": "C:/Users/YOUR_USERNAME/path/to/mcp-mysql"
+    }
+  }
+}
+```
+
+**Step 4: Restart Claude Desktop**
+
+Completely quit and restart Claude Desktop for changes to take effect.
+
+**Step 5: Use the Tools**
+
+In Claude Desktop:
+1. Look for the 🔨 (hammer) icon to see available tools
+2. Ask Claude to use your database tools:
+   - "Use query_database to show me all professors"
+   - "Get the database schema using get_schema"
+   - "Generate SQL to find all courses with more than 50 students"
+
+**Example Conversation:**
+```
+You: Use the query_database tool to show me all professors
+
+Claude: I'll query the database for all professors.
+[Calls query_database tool]
+
+Here are all the professors in your database:
+1. Dr. John Doe - john.doe@university.edu (Hired: 2020-01-10)
+2. Dr. Jane Williams - jane.williams@university.edu (Hired: 2019-09-05)
+```
+
+**Troubleshooting:**
+- If tools don't appear, check the Developer Console in Claude Desktop
+- Ensure Python is in your system PATH
+- Verify all credentials are correct
+- Check that the MCP server runs independently: `python start_mcp_server.py`
+
 ### Option 3: FastAPI Server (REST API)
 
 ```bash
