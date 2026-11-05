@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_shreya_poojary_nlp_sql_bedrock_mcp_fastapi_1793918596823-push-trigger-input-set
+  identifier: Build_shreya_poojary_nlp_sql_bedrock_mcp_fastapi_1793918596823pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: harness_test
+  pipeline:
+    identifier: Build_shreya_poojary_nlp_sql_bedrock_mcp_fastapi_1793918596823
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
