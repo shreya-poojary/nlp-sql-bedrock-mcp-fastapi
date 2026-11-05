@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_shreya_poojary_nlp_sql_bedrock_mcp_fastapi_1793918596823-pr-trigger-input-set
+  identifier: Build_shreya_poojary_nlp_sql_bedrock_mcp_fastapi_1793918596823prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: harness_test
+  pipeline:
+    identifier: Build_shreya_poojary_nlp_sql_bedrock_mcp_fastapi_1793918596823
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
